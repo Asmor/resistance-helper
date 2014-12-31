@@ -1,5 +1,5 @@
 <ul>
-	<li ng-repeat="option in options">
+	<li ng-repeat="option in options" ng-if="!option.hidden">
 		<res-option option="option"></res-option>
 	</li>
 </ul>
