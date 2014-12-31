@@ -5,14 +5,15 @@ define(function () {
 		return {
 			restrict: "E",
 			scope: {
-				role: "=role",
+				option: "=option",
 			},
-			templateUrl: "modules/resistanceRole/resistanceRole.html",
+			templateUrl: "modules/resOption/resOption.html",
 			compile: function(element) {
 				// Use the compile function from the RecursionHelper,
 				// And return the linking function(s) which it returns
 				return RecursionHelper.compile(element);
 			}
+
 		};
 	}];
 });
