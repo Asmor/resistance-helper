@@ -249,7 +249,7 @@ define(function () {
 				script.order.push("defector");
 			}
 
-			if ( script.commander ) {
+			if ( script.chiefs ) {
 				script.order.push("chiefs");
 			}
 

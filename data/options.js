@@ -13,11 +13,11 @@ define([], [
 		], allows: [
 			{ name: "Blind Spy", includes: [
 				{ type: "role", side: "spy", name: "Blind Spy" },
-				{ type: "script", phase: "spies", subphase: "no-open", name: "Blind Spy" },
+				{ type: "script", phase: "spies", subphase: "noOpen", name: "Blind Spy" },
 			]},
 			{ name: "Deep Cover", includes: [
 				{ type: "role", side: "spy", name: "Deep Cover" },
-				{ type: "script", phase: "commander", subphase: "no-raise", name: "Deep Cover" },
+				{ type: "script", phase: "commander", subphase: "noRaise", name: "Deep Cover" },
 			]},
 			{ name: "Body Guard", includes: [
 				{ type: "role", side: "res", name: "Body Guard" },
@@ -61,7 +61,7 @@ define([], [
 			{ name: "Deep Agent", includes: [
 				{ type: "role", side: "spy", name: "Deep Agent" },
 				{ type: "script", phase: "spies", subphase: "raise", name: "Deep Agent" },
-				{ type: "script", phase: "spies", subphase: "no-open", name: "Deep Agent" },
+				{ type: "script", phase: "spies", subphase: "noOpen", name: "Deep Agent" },
 			], allows: [
 				{ name: "Pretender", includes: [
 					{ type: "role", side: "res", name: "Pretender" },
@@ -97,7 +97,7 @@ define([], [
 		includes: [
 			{ type: "other", name: "Defector Switch Cards" },
 			{ type: "script", phase: "spies", subphase: "raise", name: "Spy Defector" },
-			{ type: "script", phase: "spies", subphase: "no-open", name: "Spy Defector" },
+			{ type: "script", phase: "spies", subphase: "noOpen", name: "Spy Defector" },
 		],
 	},
 	{
@@ -150,8 +150,8 @@ define([], [
 		tags: [ "rogue agent", "named roles" ],
 		includes: [
 			{ type: "role", side: "spy", name: "Rogue" },
-			{ type: "script", phase: "spies", subphase: "no-open", name: "Deep Agent" },
-			{ type: "script", phase: "commander", subphase: "no-raise", name: "Deep Agent", condition: { hasAny: [ "assassin" ] } },
+			{ type: "script", phase: "spies", subphase: "noOpen", name: "Rogue" },
+			{ type: "script", phase: "commander", subphase: "noRaise", name: "Rogue", condition: { hasAny: [ "assassin" ] } },
 		],
 	},
 	{
