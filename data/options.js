@@ -15,7 +15,7 @@ define([], [
 			{ name: "Deep Cover", includes: [
 				{ type: "role", side: "spy", name: "Deep Cover" },
 			]},
-			{ name: "Bodyguard", includes: [
+			{ name: "Body Guard", includes: [
 				{ type: "role", side: "res", name: "Body Guard" },
 			], allows: [
 				{ name: "False Commander", includes: [
