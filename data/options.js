@@ -4,22 +4,29 @@ define([], [
 	{
 		name: "Assassin Module",
 		tags: [ "scenario", "named roles" ],
-		exclusive: [ "scenario" ],
+		exclusive: [ "assassin", "scenario" ],
 		includes: [
 			{ type: "role", side: "res", name: "Commander" },
 			{ type: "role", side: "spy", name: "Assassin" },
+			{ type: "script", phase: "commander", subphase: "raise", name: "Spies" },
+			{ type: "script", phase: "commander", subphase: "open", name: "Commander" },
 		], allows: [
 			{ name: "Blind Spy", includes: [
 				{ type: "role", side: "spy", name: "Blind Spy" },
+				{ type: "script", phase: "spies", subphase: "no-open", name: "Blind Spy" },
 			]},
 			{ name: "Deep Cover", includes: [
 				{ type: "role", side: "spy", name: "Deep Cover" },
+				{ type: "script", phase: "commander", subphase: "no-raise", name: "Deep Cover" },
 			]},
 			{ name: "Body Guard", includes: [
 				{ type: "role", side: "res", name: "Body Guard" },
+				{ type: "script", phase: "bodyguard", subphase: "raise", name: "Commander" },
+				{ type: "script", phase: "bodyguard", subphase: "open", name: "Body Guard" },
 			], allows: [
 				{ name: "False Commander", includes: [
 					{ type: "role", side: "spy", name: "False Commander" },
+					{ type: "script", phase: "bodyguard", subphase: "raise", name: "False Commander" },
 				]}
 			]},
 		],
@@ -41,18 +48,24 @@ define([], [
 			{ type: "role", side: "spy", name: "Hunter" },
 			{ type: "role", side: "res", name: "Chief", conditions: { playerCountAtLeast: 8 } },
 			{ type: "role", side: "spy", name: "Chief", conditions: { playerCountAtLeast: 10 } },
+			{ type: "script", phase: "spies", subphase: "raise", name: "Spy Chiefs" },
+			{ type: "script", phase: "chiefs", subphase: "open", name: "Resistance Chiefs" },
 		], allows: [
 			{ name: "Dummy Agent", includes: [
 				{ type: "role", side: "res", name: "Dummy Agent" },
 			]},
 			{ name: "Coordinator", includes: [
 				{ type: "role", side: "res", name: "Coordinator" },
+				{ type: "script", phase: "chiefs", subphase: "raise", name: "Coordinator" },
 			]},
 			{ name: "Deep Agent", includes: [
 				{ type: "role", side: "spy", name: "Deep Agent" },
+				{ type: "script", phase: "spies", subphase: "raise", name: "Deep Agent" },
+				{ type: "script", phase: "spies", subphase: "no-open", name: "Deep Agent" },
 			], allows: [
 				{ name: "Pretender", includes: [
 					{ type: "role", side: "res", name: "Pretender" },
+					{ type: "script", phase: "spies", subphase: "raise", name: "Pretender" },
 				], allows: [
 					{ name: "Blame", includes: [
 						{ type: "rule", name: "Blame" },
@@ -62,12 +75,29 @@ define([], [
 		]
 	},
 	{
-		name: "Defector",
-		tags: [ "named roles" ],
+		name: "Defector role cards",
+		hidden: true,
+		required_if: { hasAny: [ "defector" ] },
 		includes: [
-			{ type: "other", name: "Defector Switch Cards" },
 			{ type: "role", side: "res", name: "Defector" },
 			{ type: "role", side: "spy", name: "Defector" },
+		],
+	},
+	{
+		name: "Defectors know each other",
+		tags: [ "defector", "named roles" ],
+		includes: [
+			{ type: "rule", name: "Defectors know each other" },
+			{ type: "script", phase: "defector", subphase: "open", name: "Defectors" },
+		],
+	},
+	{
+		name: "Defectors switch roles",
+		tags: [ "defector", "named roles" ],
+		includes: [
+			{ type: "other", name: "Defector Switch Cards" },
+			{ type: "script", phase: "spies", subphase: "raise", name: "Spy Defector" },
+			{ type: "script", phase: "spies", subphase: "no-open", name: "Spy Defector" },
 		],
 	},
 	{
@@ -120,6 +150,8 @@ define([], [
 		tags: [ "rogue agent", "named roles" ],
 		includes: [
 			{ type: "role", side: "spy", name: "Rogue" },
+			{ type: "script", phase: "spies", subphase: "no-open", name: "Deep Agent" },
+			{ type: "script", phase: "commander", subphase: "no-raise", name: "Deep Agent", condition: { hasAny: [ "assassin" ] } },
 		],
 	},
 	{

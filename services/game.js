@@ -20,16 +20,17 @@ define(function () {
 		return game;
 
 		function compile() {
-			var things = {
-				roles: {
-					res: [],
-					spy: [],
-				},
-				tokens: [],
-				decks: {},
-				rules: [],
-				other: []
-			};
+			var scripts = [],
+				things = {
+					roles: {
+						res: [],
+						spy: [],
+					},
+					tokens: [],
+					decks: {},
+					rules: [],
+					other: [],
+				};
 
 			checkDependencies();
 			checkRequirements();
@@ -64,11 +65,13 @@ define(function () {
 						things.tokens.push(thing.name);
 					} else if ( thing.type === "other" ) {
 						things.other.push(thing.name);
-					} else {
-						console.log(thing.type);
+					} else if ( thing.type === "script" ) {
+						scripts.push(thing);
 					}
 				}
 			});
+
+			things.script = parseScript(scripts);
 
 			game.things = clean(things);
 		}
@@ -215,6 +218,46 @@ define(function () {
 			}
 
 			return false;
+		}
+
+		function parseScript(scripts) {
+			var i, current,
+				script = {
+					spies: {
+						open: [ "Spies" ],
+					},
+					order: []
+				};
+
+			for ( i = 0; i < scripts.length; i++ ) {
+				current = scripts[i];
+
+				script[current.phase] = script[current.phase] || [];
+				script[current.phase][current.subphase] = script[current.phase][current.subphase] || [];
+				script[current.phase][current.subphase].push(current.name);
+			}
+
+			if ( script.spies ) {
+				script.order.push("spies");
+			}
+
+			if ( script.bodyguard ) {
+				script.order.push("bodyguard");
+			}
+
+			if ( script.defector ) {
+				script.order.push("defector");
+			}
+
+			if ( script.commander ) {
+				script.order.push("chiefs");
+			}
+
+			if ( script.commander ) {
+				script.order.push("commander");
+			}
+
+			return script;
 		}
 	}];
 });
