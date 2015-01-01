@@ -62,7 +62,7 @@ define([], [
 		]
 	},
 	{
-		name: "Defector Module",
+		name: "Defector",
 		tags: [ "named roles" ],
 		includes: [
 			{ type: "other", name: "Defector Switch Cards" },
@@ -71,23 +71,17 @@ define([], [
 		],
 	},
 	{
-		name: "Trapper Module",
-		includes: [
-			{ type: "other", name: "Additional set of mission cards" },
-		],
-	},
-	{
-		name: "Sergeant Module",
-		includes: [
-			{ type: "token", name: "Sergeant token" },
-		],
-	},
-	{
-		name: "Inquisitor Module",
+		name: "Inquisitor",
 		includes: [
 			{ type: "token", name: "Inquisitor token" },
 			{ type: "card", deck: "Inquisitor Loyalty Cards", name: "Spy", conditions: { hasAny: [ "named roles" ] } },
 			{ type: "card", deck: "Inquisitor Loyalty Cards", name: "Resistance", conditions: { hasAny: [ "named roles" ] } },
+		],
+	},
+	{
+		name: "The Plot Thickens",
+		includes: [
+			{ type: "other", name: "Plot deck" },
 		],
 	},
 	{
@@ -99,21 +93,21 @@ define([], [
 		],
 	},
 	{
-		name: "Resistance Reverser",
+		name: "Reverser (Resistance)",
 		tags: [ "reverser", "named roles" ],
 		includes: [
 			{ type: "role", side: "res", name: "Reverser" },
 		],
 	},
 	{
-		name: "Spy Reverser",
+		name: "Reverser (Spy)",
 		tags: [ "reverser", "named roles" ],
 		includes: [
 			{ type: "role", side: "spy", name: "Reverser" },
 		],
 	},
 	{
-		name: "Resistance Rogue Agent",
+		name: "Rogue (Resistance)",
 		tags: [ "rogue agent", "named roles" ],
 		includes: [
 			{ type: "role", side: "res", name: "Rogue" },
@@ -122,16 +116,22 @@ define([], [
 		],
 	},
 	{
-		name: "Spy Rogue Agent",
+		name: "Rogue (Spy)",
 		tags: [ "rogue agent", "named roles" ],
 		includes: [
 			{ type: "role", side: "spy", name: "Rogue" },
 		],
 	},
 	{
-		name: "The Plot Thickens",
+		name: "Sergeant",
 		includes: [
-			{ type: "other", name: "Plot deck" },
+			{ type: "token", name: "Sergeant token" },
 		],
-	}
+	},
+	{
+		name: "Trapper",
+		includes: [
+			{ type: "other", name: "Additional set of mission cards" },
+		],
+	},
 ]);
