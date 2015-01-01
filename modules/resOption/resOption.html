@@ -1,7 +1,7 @@
 {{ option.name }}
 
-<ul>
-	<li ng-repeat="subOption in option.allows">
+<ul class="list-group" ng-if="option.allows.length">
+	<li class="list-group-item" ng-repeat="subOption in option.allows">
 		<res-option option="subOption"></res-option>
 	</li>
 </ul>
