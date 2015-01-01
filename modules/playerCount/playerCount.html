@@ -1,0 +1,14 @@
+<div class="btn-group" role="group" aria-label="..." data-toggle="buttons">
+	<label
+		class="btn btn-default"
+		ng-repeat="value in [5, 6, 7, 8, 9, 10]"
+		ng-click="game.setCount(value)"
+	>
+		{{ value }}
+		<input
+			type="radio"
+			autocomplete="off"
+			name="playerCount"
+		>
+	</label>
+</div>

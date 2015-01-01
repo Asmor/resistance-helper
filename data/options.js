@@ -3,7 +3,7 @@
 define([], [
 	{
 		name: "Assassin Module",
-		tags: [ "scenario", "named role" ],
+		tags: [ "scenario", "named roles" ],
 		exclusive: [ "scenario" ],
 		includes: [
 			{ type: "role", side: "res", name: "Commander" },
@@ -31,16 +31,16 @@ define([], [
 		includes: [
 			{ type: "token", name: "Investigation token" },
 			{ type: "card", deck: "Loyalty Cards", name: "Not a Chief" },
-			{ type: "card", deck: "Loyalty Cards", name: "Chief", condition: { playerCountAtMost: 6 } },
-			{ type: "card", deck: "Loyalty Cards", name: "Resistance Chief", condition: { playerCountAtLeast: 7 } },
-			{ type: "card", deck: "Loyalty Cards", name: "Spy Chief", condition: { playerCountAtLeast: 7 } },
+			{ type: "card", deck: "Loyalty Cards", name: "Chief", conditions: { playerCountAtMost: 6 } },
+			{ type: "card", deck: "Loyalty Cards", name: "Resistance Chief", conditions: { playerCountAtLeast: 7 } },
+			{ type: "card", deck: "Loyalty Cards", name: "Spy Chief", conditions: { playerCountAtLeast: 7 } },
 			{ type: "card", deck: "Mission Cards", name: "Chief Fail" },
 			{ type: "role", side: "res", name: "Chief" },
 			{ type: "role", side: "res", name: "Hunter" },
 			{ type: "role", side: "spy", name: "Chief" },
 			{ type: "role", side: "spy", name: "Hunter" },
-			{ type: "role", side: "res", name: "Chief", condition: { playerCountAtLeast: 8 } },
-			{ type: "role", side: "spy", name: "Chief", condition: { playerCountAtLeast: 10 } },
+			{ type: "role", side: "res", name: "Chief", conditions: { playerCountAtLeast: 8 } },
+			{ type: "role", side: "spy", name: "Chief", conditions: { playerCountAtLeast: 10 } },
 		], allows: [
 			{ name: "Dummy Agent", includes: [
 				{ type: "role", side: "res", name: "Dummy Agent" },
@@ -63,7 +63,7 @@ define([], [
 	},
 	{
 		name: "Defector Module",
-		tags: [ "named role" ],
+		tags: [ "named roles" ],
 		includes: [
 			{ type: "other", name: "Defector Loyalty Cards" },
 			{ type: "role", side: "res", name: "Defector" },
@@ -80,8 +80,8 @@ define([], [
 		name: "Inquisitor Module",
 		includes: [
 			{ type: "token", name: "Inquisitor token" },
-			{ type: "card", deck: "Loyalty Cards", name: "Spy", condition: { has_any: [ "named role" ] } },
-			{ type: "card", deck: "Loyalty Cards", name: "Resistance", condition: { has_any: [ "named role" ] } },
+			{ type: "card", deck: "Loyalty Cards", name: "Spy", conditions: { has_any: [ "named roles" ] } },
+			{ type: "card", deck: "Loyalty Cards", name: "Resistance", conditions: { has_any: [ "named roles" ] } },
 		],
 	},
 	{
@@ -94,21 +94,21 @@ define([], [
 	},
 	{
 		name: "Resistance Reverser",
-		tags: [ "reverser", "named role" ],
+		tags: [ "reverser", "named roles" ],
 		includes: [
 			{ type: "role", side: "res", name: "Reverser" },
 		],
 	},
 	{
 		name: "Spy Reverser",
-		tags: [ "reverser", "named role" ],
+		tags: [ "reverser", "named roles" ],
 		includes: [
 			{ type: "role", side: "spy", name: "Reverser" },
 		],
 	},
 	{
 		name: "Resistance Rogue Agent",
-		tags: [ "rogue agent", "named role" ],
+		tags: [ "rogue agent", "named roles" ],
 		includes: [
 			{ type: "role", side: "res", name: "Rogue" },
 			{ type: "token", name: "Watch token" },
@@ -117,7 +117,7 @@ define([], [
 	},
 	{
 		name: "Spy Rogue Agent",
-		tags: [ "rogue agent", "named role" ],
+		tags: [ "rogue agent", "named roles" ],
 		includes: [
 			{ type: "role", side: "spy", name: "Rogue" },
 		],

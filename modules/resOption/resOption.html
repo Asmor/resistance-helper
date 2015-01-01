@@ -6,7 +6,7 @@
 		'option__tertiary': option.level > 2,
 		'selected': game.options[option.name]
 	}"
-	ng-click="game.options[option.name] = !game.options[option.name]"
+	ng-click="game.toggle(option.name)"
 >
 	{{ option.name }}
 </div>
