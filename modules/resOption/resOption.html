@@ -1,8 +1,12 @@
-<div class="option" ng-class="{
-	'option__primary': option.level == 1,
-	'option__secondary': option.level == 2,
-	'option__tertiary': option.level > 2
-}">
+<div
+	class="option"
+	ng-class="{
+		'option__primary': option.level == 1,
+		'option__secondary': option.level == 2,
+		'option__tertiary': option.level > 2,
+		'selected': game.options[option.name]
+	}"
+>
 	{{ option.name }}
 </div>
 

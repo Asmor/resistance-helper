@@ -1,7 +1,11 @@
-$primary: #FFDFDF;
-$secondary: #E1E1FF;
-$tertiary: #CCFFCC;
+$primary: #aa3939;
+$secondary: #aa6c39;
+$tertiary: #882d61;
+$border: #dddddd;
+$selected: #2d882d;
 
 @import "../../thirdparty/bootstrap-3.3.1-dist/sass/_bootstrap";
 
-@import "../resOption/resOption";
+@import "mixins";
+
+@import "../resOption/_resOption";

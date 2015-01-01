@@ -1,0 +1,24 @@
+@mixin colors($base) {
+	@include color-variants($base);
+
+	&.selected {
+		@include color-variants($selected);
+	}
+}
+
+@mixin color-variants($base) {
+	background-color: $base;
+
+	&:hover {
+		background-color: lighten($base, 20%);
+	}
+
+	&:active {
+		background-color: darken($base, 10%);
+	}
+
+	&.disabled, &[disabled], {
+		background-color: darken(desaturate($base, 20%), 20%);
+	}
+
+}

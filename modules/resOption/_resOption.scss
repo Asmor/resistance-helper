@@ -1,13 +1,19 @@
 .option {
-	@extend .list-group-item;
+	border-top: 0;
+	border: 1px solid $border;
+	color: #eee;
+	padding: 10px 15px;
 
 	&__primary {
-		background-color: $primary;
+		@include colors($primary);
+		border-top: 1px solid $border;
+		margin-top: 5px;
+		border-radius: 10px 10px 0 0;
 	}
 	&__secondary {
-		background-color: $secondary;
+		@include colors($secondary);
 	}
 	&__tertiary {
-		background-color: $tertiary;
+		@include colors($tertiary);
 	}
 }
