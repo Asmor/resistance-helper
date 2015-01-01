@@ -9,6 +9,10 @@
 		border-top: 1px solid $border;
 		margin-top: 5px;
 		border-radius: 10px 10px 0 0;
+
+		&.option__terminal {
+			border-radius: 10px;
+		}
 	}
 	&__secondary {
 		@include colors($secondary);

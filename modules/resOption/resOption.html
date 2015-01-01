@@ -4,6 +4,7 @@
 		'option__primary': option.level == 1,
 		'option__secondary': option.level == 2,
 		'option__tertiary': option.level > 2,
+		'option__terminal': !option.allows.length,
 		'selected': game.options[option.name]
 	}"
 	ng-click="game.toggle(option.name)"

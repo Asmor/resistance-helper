@@ -5393,6 +5393,8 @@ button.close {
         background-color: #206220; }
       .option__primary.selected.disabled, .option__primary.selected[disabled] {
         background-color: #1c331c; }
+    .option__primary.option__terminal {
+      border-radius: 10px; }
   .option__secondary {
     background-color: #aa6c39; }
     .option__secondary:hover {
@@ -5410,13 +5412,13 @@ button.close {
       .option__secondary.selected.disabled, .option__secondary.selected[disabled] {
         background-color: #1c331c; }
   .option__tertiary {
-    background-color: #882d61; }
+    background-color: #aa6c39; }
     .option__tertiary:hover {
-      background-color: #c75496; }
+      background-color: #d2a077; }
     .option__tertiary:active {
-      background-color: #622046; }
+      background-color: #84542c; }
     .option__tertiary.disabled, .option__tertiary[disabled] {
-      background-color: #331c29; }
+      background-color: #513d2c; }
     .option__tertiary.selected {
       background-color: #2d882d; }
       .option__tertiary.selected:hover {
