@@ -5378,7 +5378,7 @@ button.close {
     background-color: #aa3939;
     border-top: 1px solid #dddddd;
     margin-top: 5px;
-    border-radius: 10px 10px 0 0; }
+    border-radius: 10px; }
     .option__primary:hover {
       background-color: #d27777; }
     .option__primary:active {
@@ -5393,10 +5393,9 @@ button.close {
         background-color: #206220; }
       .option__primary.selected.disabled, .option__primary.selected[disabled] {
         background-color: #1c331c; }
-    .option__primary.option__terminal {
-      border-radius: 10px; }
   .option__secondary {
-    background-color: #aa6c39; }
+    background-color: #aa6c39;
+    margin: 0 10px; }
     .option__secondary:hover {
       background-color: #d2a077; }
     .option__secondary:active {
@@ -5412,7 +5411,8 @@ button.close {
       .option__secondary.selected.disabled, .option__secondary.selected[disabled] {
         background-color: #1c331c; }
   .option__tertiary {
-    background-color: #aa6c39; }
+    background-color: #aa6c39;
+    margin: 0 10px; }
     .option__tertiary:hover {
       background-color: #d2a077; }
     .option__tertiary:active {
