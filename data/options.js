@@ -77,6 +77,12 @@ define([], [
 		],
 	},
 	{
+		name: "Sergeant Module",
+		includes: [
+			{ type: "token", name: "Sergeant token" },
+		],
+	},
+	{
 		name: "Inquisitor Module",
 		includes: [
 			{ type: "token", name: "Inquisitor token" },
