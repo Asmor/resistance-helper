@@ -7,7 +7,7 @@ define(function () {
 			scope: {},
 			templateUrl: "modules/optionsList/optionsList.html",
 			link: function (scope) {
-				scope.options = options.options;
+				scope.options = options;
 			}
 		};
 	}];
