@@ -15,6 +15,8 @@ define(function () {
 			}
 		};
 
+		compile();
+
 		return game;
 
 		function compile() {
@@ -30,6 +32,7 @@ define(function () {
 			};
 
 			checkDependencies();
+			checkRequirements();
 
 			Object.keys(game.options).forEach(function (optionName) {
 				var option = options.byName[optionName],
@@ -65,24 +68,74 @@ define(function () {
 						console.log(thing.type);
 					}
 				}
-
-				window.things = things;
 			});
+			things = clean(things);
+
+			window.things = things;
+		}
+
+		function clean(things) {
+			var resistance, spies = 2;
+
+			if (game.playerCount >= 10) {
+				spies = 4;
+			} else if (game.playerCount >= 7) {
+				spies = 3;
+			}
+
+			resistance = game.playerCount - spies;
+
+			things.roles.res = normalize(things.roles.res, "Blank", resistance);
+			things.roles.spy = normalize(things.roles.spy, "Blank", spies);
+
+			return things;
+		}
+
+		function normalize(a, name, count) {
+			a.sort();
+
+			if (a.length > count) {
+				console.log("Warning! Too many of something!");
+			}
+
+			while ( a.length < count ) {
+				// Pad the array out with the supplied generic value so it's the last thing in there after sorting
+				a.push(name);
+			}
+
+			var index = 0, qty;
+
+			while ( index < a.length ) {
+				// Condense duplicates
+				qty = 1;
+
+				while ( a[index] === a[index+1] ) {
+					// Duplicate found! Increment qty and remove it!
+					qty++;
+					a.splice(index+1, 1);
+				}
+
+				if ( qty > 1 ) {
+					a[index] = qty + "x " + a[index];
+				}
+
+				index++;
+			}
+
+			return a;
 		}
 
 		function checkConditions(thing) {
 			var conditions = thing.conditions,
-				has_any,
+				hasAny,
 				minCount,
-				maxCount,
-				tagFound,
-				i;
+				maxCount;
 
 			if ( !conditions ) {
 				return true;
 			}
 
-			has_any = conditions.has_any;
+			hasAny = conditions.hasAny;
 			minCount = conditions.playerCountAtLeast;
 			maxCount = conditions.playerCountAtMost;
 
@@ -94,17 +147,8 @@ define(function () {
 				return false;
 			}
 
-			if ( has_any ) {
-				for ( i = 0; i < has_any.length; i++ ) {
-					if ( has(has_any[i]) ) {
-						tagFound = true;
-						break;
-					}
-				}
-
-				if ( ! tagFound ) {
-					return false;
-				}
+			if ( hasAny && !checkHasAny(hasAny) ) {
+				return false;
 			}
 
 			return true;
@@ -121,6 +165,27 @@ define(function () {
 					game.options[option.name] = false;
 				}
 			});
+		}
+
+		function checkRequirements() {
+			// Check top-level options to see if they're required for this setup
+			for ( var i = 0; i < options.tree.length; i++ ) {
+				var option = options.tree[i];
+
+				if ( !option.required_if ) {
+					continue;
+				}
+
+				// Remove required_if ones first and then re-check
+				game.options[option.name] = false;
+
+				var hasAny = option.required_if.hasAny;
+
+				if ( hasAny && checkHasAny(hasAny) ) {
+					// We need this, so add it
+					game.options[option.name] = true;
+				}
+			}
 		}
 
 		function has(tag, ignore) {
@@ -141,6 +206,16 @@ define(function () {
 			});
 
 			return found;
+		}
+
+		function checkHasAny(tags) {
+			for ( var i = 0; i < tags.length; i++ ) {
+				if ( has(tags[i]) ) {
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}];
 });

@@ -34,7 +34,7 @@ define([], [
 			{ type: "card", deck: "Loyalty Cards", name: "Chief", conditions: { playerCountAtMost: 6 } },
 			{ type: "card", deck: "Loyalty Cards", name: "Resistance Chief", conditions: { playerCountAtLeast: 7 } },
 			{ type: "card", deck: "Loyalty Cards", name: "Spy Chief", conditions: { playerCountAtLeast: 7 } },
-			{ type: "card", deck: "Mission Cards", name: "Chief Fail" },
+			{ type: "card", deck: "Extra Mission Cards", name: "Chief Fail" },
 			{ type: "role", side: "res", name: "Chief" },
 			{ type: "role", side: "res", name: "Hunter" },
 			{ type: "role", side: "spy", name: "Chief" },
@@ -80,16 +80,16 @@ define([], [
 		name: "Inquisitor Module",
 		includes: [
 			{ type: "token", name: "Inquisitor token" },
-			{ type: "card", deck: "Loyalty Cards", name: "Spy", conditions: { has_any: [ "named roles" ] } },
-			{ type: "card", deck: "Loyalty Cards", name: "Resistance", conditions: { has_any: [ "named roles" ] } },
+			{ type: "card", deck: "Loyalty Cards", name: "Spy", conditions: { hasAny: [ "named roles" ] } },
+			{ type: "card", deck: "Loyalty Cards", name: "Resistance", conditions: { hasAny: [ "named roles" ] } },
 		],
 	},
 	{
 		name: "Reverser Mission Cards",
 		hidden: true,
-		required_if: { has_any: [ "reverser" ] },
+		required_if: { hasAny: [ "reverser" ] },
 		includes: [
-			{ type: "card", deck: "Mission Cards", name: "Reverse" },
+			{ type: "card", deck: "Extra Mission Cards", name: "Reverse" },
 		],
 	},
 	{
@@ -112,7 +112,7 @@ define([], [
 		includes: [
 			{ type: "role", side: "res", name: "Rogue" },
 			{ type: "token", name: "Watch token" },
-			{ type: "card", deck: "Mission Cards", name: "Rogue Success" },
+			{ type: "card", deck: "Extra Mission Cards", name: "Rogue Success" },
 		],
 	},
 	{
