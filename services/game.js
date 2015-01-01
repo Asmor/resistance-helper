@@ -232,7 +232,7 @@ define(function () {
 			for ( i = 0; i < scripts.length; i++ ) {
 				current = scripts[i];
 
-				script[current.phase] = script[current.phase] || [];
+				script[current.phase] = script[current.phase] || {};
 				script[current.phase][current.subphase] = script[current.phase][current.subphase] || [];
 				script[current.phase][current.subphase].push(current.name);
 			}
