@@ -30,10 +30,10 @@ define([], [
 		exclusive: [ "scenario" ],
 		includes: [
 			{ type: "token", name: "Investigation token" },
-			{ type: "card", deck: "Loyalty Cards", name: "Not a Chief" },
-			{ type: "card", deck: "Loyalty Cards", name: "Chief", conditions: { playerCountAtMost: 6 } },
-			{ type: "card", deck: "Loyalty Cards", name: "Resistance Chief", conditions: { playerCountAtLeast: 7 } },
-			{ type: "card", deck: "Loyalty Cards", name: "Spy Chief", conditions: { playerCountAtLeast: 7 } },
+			{ type: "card", deck: "Hunter Loyalty Cards", name: "Not a Chief" },
+			{ type: "card", deck: "Hunter Loyalty Cards", name: "Chief", conditions: { playerCountAtMost: 6 } },
+			{ type: "card", deck: "Hunter Loyalty Cards", name: "Resistance Chief", conditions: { playerCountAtLeast: 7 } },
+			{ type: "card", deck: "Hunter Loyalty Cards", name: "Spy Chief", conditions: { playerCountAtLeast: 7 } },
 			{ type: "card", deck: "Extra Mission Cards", name: "Chief Fail" },
 			{ type: "role", side: "res", name: "Chief" },
 			{ type: "role", side: "res", name: "Hunter" },
@@ -65,7 +65,7 @@ define([], [
 		name: "Defector Module",
 		tags: [ "named roles" ],
 		includes: [
-			{ type: "other", name: "Defector Loyalty Cards" },
+			{ type: "other", name: "Defector Switch Cards" },
 			{ type: "role", side: "res", name: "Defector" },
 			{ type: "role", side: "spy", name: "Defector" },
 		],
@@ -80,8 +80,8 @@ define([], [
 		name: "Inquisitor Module",
 		includes: [
 			{ type: "token", name: "Inquisitor token" },
-			{ type: "card", deck: "Loyalty Cards", name: "Spy", conditions: { hasAny: [ "named roles" ] } },
-			{ type: "card", deck: "Loyalty Cards", name: "Resistance", conditions: { hasAny: [ "named roles" ] } },
+			{ type: "card", deck: "Inquisitor Loyalty Cards", name: "Spy", conditions: { hasAny: [ "named roles" ] } },
+			{ type: "card", deck: "Inquisitor Loyalty Cards", name: "Resistance", conditions: { hasAny: [ "named roles" ] } },
 		],
 	},
 	{

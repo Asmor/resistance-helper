@@ -69,9 +69,8 @@ define(function () {
 					}
 				}
 			});
-			things = clean(things);
 
-			window.things = things;
+			game.things = clean(things);
 		}
 
 		function clean(things) {

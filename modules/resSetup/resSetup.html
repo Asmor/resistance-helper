@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Roles</div>
+	<div class="panel-body">
+		<div
+			ng-repeat="side in sides"
+			class="role-list"
+			ng-class="side.className"
+		>
+			<span class="role-list--name">
+				{{ side.name }}
+			</span>
+			<ul>
+				<li ng-repeat="role in game.things.roles[side.key]">
+					{{ role }}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel-heading" ng-if="showCards()">Cards</div>
+	<div class="panel-body" ng-if="showCards()">
+		<div
+			ng-repeat="(deckName, cards) in game.things.decks"
+			class="card-list"
+		>
+			<span class="deck-list--name">{{ deckName }}</span>
+			<ul>
+				<li ng-repeat="card in cards">
+					{{ card }}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel-heading" ng-if="game.things.tokens.length">Tokens</div>
+	<div class="panel-body" ng-if="game.things.tokens.length">
+		<ul>
+			<li ng-repeat="token in game.things.tokens">
+				{{ token }}
+			</li>
+		</ul>
+	</div>
+	<div class="panel-heading" ng-if="game.things.rules.length">Rules</div>
+	<div class="panel-body" ng-if="game.things.rules.length">
+		<ul>
+			<li ng-repeat="rule in game.things.rules">
+				{{ rule }}
+			</li>
+		</ul>
+	</div>
+	<div class="panel-heading" ng-if="game.things.other.length">Other</div>
+	<div class="panel-body" ng-if="game.things.other.length">
+		<ul>
+			<li ng-repeat="other in game.things.other">
+				{{ other }}
+			</li>
+		</ul>
+	</div>
+</div>
