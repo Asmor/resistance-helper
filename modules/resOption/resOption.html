@@ -1,7 +1,13 @@
-{{ option.name }}
+<div class="option" ng-class="{
+	'option__primary': option.level == 1,
+	'option__secondary': option.level == 2,
+	'option__tertiary': option.level > 2
+}">
+	{{ option.name }}
+</div>
 
-<ul class="list-group" ng-if="option.allows.length">
-	<li class="list-group-item" ng-repeat="subOption in option.allows">
-		<res-option option="subOption"></res-option>
-	</li>
-</ul>
+<res-option
+	ng-if="option.allows.length"
+	ng-repeat="subOption in option.allows"
+	option="subOption"
+></res-option>

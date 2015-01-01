@@ -1,0 +1,13 @@
+.option {
+	@extend .list-group-item;
+
+	&__primary {
+		background-color: $primary;
+	}
+	&__secondary {
+		background-color: $secondary;
+	}
+	&__tertiary {
+		background-color: $tertiary;
+	}
+}

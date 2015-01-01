@@ -1,5 +1,7 @@
-<ul class="list-group">
-	<li class="list-group-item" ng-repeat="option in options" ng-if="!option.hidden">
-		<res-option option="option"></res-option>
-	</li>
-</ul>
+<div class="list-group" data-toggle="items">
+	<res-option
+		ng-repeat="option in options"
+		ng-if="!option.hidden"
+		option="option"
+	></res-option>
+</div>

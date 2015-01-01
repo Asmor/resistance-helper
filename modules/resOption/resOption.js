@@ -3,7 +3,7 @@
 define(function () {
 	return ["RecursionHelper", function (RecursionHelper) {
 		return {
-			restrict: "E",
+			restrict: "AE",
 			scope: {
 				option: "=option",
 			},

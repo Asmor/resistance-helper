@@ -54,7 +54,9 @@ define([], [
 				{ name: "Pretender", includes: [
 					{ type: "role", side: "res", name: "Pretender" },
 				], allows: [
-					{ type: "rule", name: "Blame" },
+					{ name: "Blame", includes: [
+						{ type: "rule", name: "Blame" },
+					]},
 				]},
 			]},
 		]
