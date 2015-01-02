@@ -18,6 +18,12 @@ define([], ["game", function (game) {
 					openPause = 10,
 					closePause = 1;
 
+				sections.push([{
+					text: "Everyone close your eyes and stick out your fists",
+					type: "start",
+					pause: 3,
+				}]);
+
 				for ( i = 0; i < game.things.script.order.length; i++ ) {
 					phase = game.things.script[game.things.script.order[i]];
 					lines = [];
