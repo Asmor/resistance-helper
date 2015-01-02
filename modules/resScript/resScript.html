@@ -1,7 +1,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Script</div>
 	<div class="panel-body">
-		<button class="btn" ng-click="speakScript()" ng-if="canSpeak">Read script</button>
+			<button type="button" class="btn btn-default" ng-click="speakScript()">Read script</button>
+			<!-- <button type="button" class="btn btn-default" ng-click="speakScript()" ng-if="canSpeak">Read script</button> -->
+
 		<p ng-repeat="phase in getScript()">
 			{{ phase }}
 		</p>

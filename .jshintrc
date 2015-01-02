@@ -4,6 +4,6 @@
 	"globalstrict": true,
 	"undef": true,
 	"unused": true,
-	"predef": [ "angular", "Firebase", "define", "require" ],
+	"predef": [ "angular", "Firebase", "define", "require", "speechSynthesis", "SpeechSynthesisUtterance" ],
 	"indent": 1
 }

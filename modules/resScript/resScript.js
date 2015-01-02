@@ -48,16 +48,22 @@ define([], ["game", function (game) {
 
 			scope.canSpeak = ( "speechSynthesis" in window );
 
+
 			scope.speakScript = function () {
 				if ( !scope.canSpeak ) {
 					return;
 				}
 
-				var script = scope.getScript().join(" ");
-				console.log(script);
 
-				var msg = new window.SpeechSynthesisUtterance(script);
-				window.speechSynthesis.speak(msg);
+				if ( speechSynthesis.speaking || speechSynthesis.paused ) {
+					speechSynthesis.cancel();
+					return;
+				}
+
+				var script = scope.getScript().join(" ");
+
+				var msg = new SpeechSynthesisUtterance(script);
+				speechSynthesis.speak(msg);
 			};
 
 			function smartConcat(a) {
