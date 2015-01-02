@@ -117,9 +117,6 @@ define([], ["game", function (game) {
 				currentSpeechTimestamp = new Date().getTime();
 
 				speak(flattened, currentSpeechTimestamp);
-
-				// var msg = new SpeechSynthesisUtterance(script);
-				// speechSynthesis.speak(msg);
 			};
 
 			function speak(lines, timestamp) {
