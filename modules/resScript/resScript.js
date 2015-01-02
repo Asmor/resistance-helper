@@ -161,7 +161,7 @@ define([], ["game", function (game) {
 			function setVoice() {
 				scope.$apply(function () {
 					var voices = speechSynthesis.getVoices().filter(function (voice) {
-						return voice.localService || voice.lang.match(/^en/);
+						return voice.lang.match(/^en/);
 					});
 
 					scope.voiceParams.selectedVoice = voices.filter(function (voice) { return voice.default; })[0];
