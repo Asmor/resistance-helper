@@ -19,7 +19,7 @@ define([], ["game", function (game) {
 					closePause = 1;
 
 				sections.push([{
-					text: "Everyone close your eyes and stick out your fists",
+					text: "Everyone close your eyes and stick out your fists.",
 					type: "start",
 					pause: 3,
 				}]);
