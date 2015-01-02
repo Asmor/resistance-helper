@@ -83,8 +83,6 @@ define([], ["game", function (game) {
 				_sections = sections;
 				game.dirty = false;
 
-				window.sections = sections;
-
 				return sections;
 			};
 
@@ -97,6 +95,20 @@ define([], ["game", function (game) {
 			}
 
 			scope.canSpeak = ( "speechSynthesis" in window );
+
+			if ( scope.canSpeak ) {
+				speechSynthesis.addEventListener("voiceschanged", setVoice, false);
+			}
+
+			scope.voiceParams = {
+				rate: 1,
+			};
+
+			scope.changeRate = function (amt) {
+				scope.voiceParams.rate += amt;
+
+				scope.voiceParams.rate = Math.round(Math.max(Math.min(scope.voiceParams.rate, 2), 0.2) * 10) / 10;
+			};
 
 			scope.speakScript = function () {
 				if ( !scope.canSpeak ) {
@@ -113,7 +125,6 @@ define([], ["game", function (game) {
 					flattened = [];
 
 				flattened = flattened.concat.apply(flattened, script);
-				console.log(flattened);
 				currentSpeechTimestamp = new Date().getTime();
 
 				speak(flattened, currentSpeechTimestamp);
@@ -134,6 +145,9 @@ define([], ["game", function (game) {
 				var line = lines.shift(),
 					msg = new SpeechSynthesisUtterance(line.text);
 
+				msg.voice = scope.voiceParams.selectedVoice;
+				msg.rate = scope.voiceParams.rate;
+
 				// When we're done speaking, pause before speaking next line
 				msg.addEventListener("end", function () {
 					setTimeout(function () {
@@ -142,6 +156,22 @@ define([], ["game", function (game) {
 				}, false);
 
 				speechSynthesis.speak(msg);
+			}
+
+			function setVoice() {
+				scope.$apply(function () {
+					var voices = speechSynthesis.getVoices().filter(function (voice) {
+						return voice.localService || voice.lang.match(/^en/);
+					});
+
+					scope.voiceParams.selectedVoice = voices.filter(function (voice) { return voice.default; })[0];
+
+					scope.voices = voices;
+
+					// console.table(voices);
+
+					speechSynthesis.removeEventListener("voiceschanged", setVoice, false);
+				});
 			}
 		}
 	};

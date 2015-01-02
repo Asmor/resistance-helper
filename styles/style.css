@@ -5427,3 +5427,6 @@ button.close {
         background-color: #206220; }
       .option__tertiary.selected.disabled, .option__tertiary.selected[disabled] {
         background-color: #1c331c; }
+
+.voice-controls {
+  margin-bottom: 10px; }

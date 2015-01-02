@@ -1,8 +1,23 @@
 <div class="panel panel-default">
+	<div class="panel-heading" ng-if="canSpeak">Narration</div>
+	<div class="panel-body" ng-if="canSpeak">
+		<div class="voice-controls">
+			<button type="button" class="btn btn-default" ng-click="speakScript()">Read script</button>
+			<select
+				ng-model="voiceParams.selectedVoice"
+				ng-options="voice.name for voice in voices"
+			>
+			</select>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default" ng-click="changeRate(-0.2)">Slower</button>
+				<button type="button" class="btn btn-default disabled">Speed: {{ voiceParams.rate }}</button>
+				<button type="button" class="btn btn-default" ng-click="changeRate(0.2)">Faster</button>
+			</div>
+		</div>
+		<p> Note: Voice speed isn't supported by all voices </p>
+	</div>
 	<div class="panel-heading">Script</div>
 	<div class="panel-body">
-			<!-- <button type="button" class="btn btn-default" ng-click="speakScript()">Read script</button> -->
-			<button type="button" class="btn btn-default" ng-click="speakScript()" ng-if="canSpeak">Read script</button>
 
 		<p ng-repeat="section in getScript()">
 			<span ng-repeat="line in section"> {{ line.text }} </span>
