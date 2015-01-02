@@ -32,6 +32,9 @@ define(function () {
 					other: [],
 				};
 
+			// This is used by the script compiler to only re-compile when the game changes
+			game.dirty = true;
+
 			checkDependencies();
 			checkRequirements();
 

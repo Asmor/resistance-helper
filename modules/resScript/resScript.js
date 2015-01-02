@@ -6,12 +6,21 @@ define([], ["game", function (game) {
 		scope: {},
 		templateUrl: "modules/resScript/resScript.html",
 		link: function (scope) {
+			var _sections, currentSpeechTimestamp;
+
 			scope.getScript = function () {
-				var phases = [], i, phase, a;
+				if ( ! game.dirty ) {
+					return _sections;
+				}
+
+				var sections = [], lines, line, i, phase,
+					raisePause = 2,
+					openPause = 10,
+					closePause = 1;
 
 				for ( i = 0; i < game.things.script.order.length; i++ ) {
 					phase = game.things.script[game.things.script.order[i]];
-					a = [];
+					lines = [];
 
 					if ( !phase.open ) {
 						// All phases are for giving information to people... if nobody is opening
@@ -19,51 +28,58 @@ define([], ["game", function (game) {
 						continue;
 					}
 
+					sections.push(lines);
+
 					if ( phase.raise ) {
-						a.push( smartConcat(phase.raise) );
+						line = smartConcat(phase.raise);
 
 						if ( phase.noRaise ) {
-							a.push(", except " + smartConcat(phase.noRaise) );
+							line += ", except " + smartConcat(phase.noRaise);
 						}
 
-						a.push(", raise your thumbs. ");
+						line += ", raise your thumbs. ";
+
+						lines.push({
+							text: line,
+							type: "raise",
+							pause: raisePause,
+						});
 					}
 
-					a.push( smartConcat(phase.open) );
+					line = smartConcat(phase.open);
 
 					if ( phase.noOpen ) {
-						a.push(", except " + smartConcat(phase.noOpen) );
+						line += ", except " + smartConcat(phase.noOpen);
 					}
 
-					a.push(", open your eyes. ");
+					line += ", open your eyes.";
 
-					a.push("Everyone close your eyes and lower your thumbs.");
-					phases.push(a.join(""));
+					lines.push({
+						text: line,
+						type: "open",
+						pause: openPause,
+					});
+
+					lines.push({
+						text: "Everyone close your eyes and lower your thumbs.",
+						type: "close",
+						pause: closePause,
+					});
 				}
 
-				phases.push("Everyone open your eyes!");
+				sections.push([{
+					text: "Everyone open your eyes!",
+					type: "end",
+					pause: 0,
+				}]);
 
-				return phases;
-			};
+				// Only recompile this if the game has changed
+				_sections = sections;
+				game.dirty = false;
 
-			scope.canSpeak = ( "speechSynthesis" in window );
+				window.sections = sections;
 
-
-			scope.speakScript = function () {
-				if ( !scope.canSpeak ) {
-					return;
-				}
-
-
-				if ( speechSynthesis.speaking || speechSynthesis.paused ) {
-					speechSynthesis.cancel();
-					return;
-				}
-
-				var script = scope.getScript().join(" ");
-
-				var msg = new SpeechSynthesisUtterance(script);
-				speechSynthesis.speak(msg);
+				return sections;
 			};
 
 			function smartConcat(a) {
@@ -72,6 +88,57 @@ define([], ["game", function (game) {
 				} else {
 					return a.slice(0, a.length - 1).join(", ") + ", and " + a[a.length - 1];
 				}
+			}
+
+			scope.canSpeak = ( "speechSynthesis" in window );
+
+			scope.speakScript = function () {
+				if ( !scope.canSpeak ) {
+					return;
+				}
+
+				if ( currentSpeechTimestamp ) {
+					speechSynthesis.cancel();
+					currentSpeechTimestamp = 0;
+					return;
+				}
+
+				var script = scope.getScript(),
+					flattened = [];
+
+				flattened = flattened.concat.apply(flattened, script);
+				console.log(flattened);
+				currentSpeechTimestamp = new Date().getTime();
+
+				speak(flattened, currentSpeechTimestamp);
+
+				// var msg = new SpeechSynthesisUtterance(script);
+				// speechSynthesis.speak(msg);
+			};
+
+			function speak(lines, timestamp) {
+				if ( !lines.length) {
+					// We're done speaking. Set timestamp to 0 so button works on next press
+					currentSpeechTimestamp = 0;
+					return;
+				}
+
+				 if ( currentSpeechTimestamp !== timestamp ) {
+					// We're done or we've been canceled
+					return;
+				}
+
+				var line = lines.shift(),
+					msg = new SpeechSynthesisUtterance(line.text);
+
+				// When we're done speaking, pause before speaking next line
+				msg.addEventListener("end", function () {
+					setTimeout(function () {
+						speak(lines, timestamp);
+					}, line.pause * 1000);
+				}, false);
+
+				speechSynthesis.speak(msg);
 			}
 		}
 	};
