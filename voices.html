@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Voice info</title>
+</head>
+<body>
+<script>
+speechSynthesis.addEventListener("voiceschanged", function () {
+	var voices = speechSynthesis.getVoices(),
+		keys = Object.keys(voices[0]),
+		i, j;
+
+	document.write("<table border=1><tr>");
+
+	for ( i = 0; i < keys.length; i++ ) {
+		document.write("<td>" + keys[i] + "</td>");
+	}
+
+	document.write("</tr>");
+
+	for ( i = 0; i < voices.length; i++ ) {
+		document.write("</tr>");
+		for ( j = 0; j < keys.length; j++ ) {
+			document.write("<td>" + voices[i][keys[j]] + "</td>");
+		}
+		document.write("</tr>");
+	}
+
+	document.write("<table>");
+}, false);
+</script>
+</body>
+</html>
