@@ -145,7 +145,12 @@ define([], ["game", function (game) {
 				var line = lines.shift(),
 					msg = new SpeechSynthesisUtterance(line.text);
 
-				msg.voice = scope.voiceParams.selectedVoice;
+				if ( scope.voiceParams.selectedVoice ) {
+					// iOS doesn't seem to like setting selectedVoice to undefined, so make sure we
+					// actually have a voice to use before explicitly setting it
+					msg.voice = scope.voiceParams.selectedVoice;
+				}
+
 				msg.rate = scope.voiceParams.rate;
 
 				// When we're done speaking, pause before speaking next line
@@ -160,9 +165,17 @@ define([], ["game", function (game) {
 
 			function setVoice() {
 				scope.$apply(function () {
-					var voices = speechSynthesis.getVoices().filter(function (voice) {
-						return voice.lang.match(/^en/);
-					});
+					var allVoices = speechSynthesis.getVoices(),
+						voices = allVoices.filter(function (voice) {
+							return voice.lang.match(/^en/);
+						});
+
+					if ( !voices.length ) {
+						// iOS doesn't get any voices listed... I'm hoping it's just choking on the
+						// language filter, so if we don't get any voices after filtering just use
+						// all voices
+						voices = allVoices;
+					}
 
 					scope.voiceParams.selectedVoice = voices.filter(function (voice) { return voice.default; })[0];
 
