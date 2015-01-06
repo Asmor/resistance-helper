@@ -94,9 +94,9 @@ define([], ["game", function (game) {
 				}
 			}
 
-			scope.canSpeak = ( "speechSynthesis" in window );
+			scope.canSpeak = false;
 
-			if ( scope.canSpeak ) {
+			if ( "speechSynthesis" in window ) {
 				speechSynthesis.addEventListener("voiceschanged", setVoice, false);
 			}
 
@@ -175,6 +175,10 @@ define([], ["game", function (game) {
 						// language filter, so if we don't get any voices after filtering just use
 						// all voices
 						voices = allVoices;
+					}
+
+					if ( voices.length ) {
+						scope.canSpeak = true;
 					}
 
 					scope.voiceParams.selectedVoice = voices.filter(function (voice) { return voice.default; })[0];
