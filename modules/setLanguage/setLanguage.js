@@ -10,6 +10,7 @@ define(function () {
 				scope.languages = [
 					{ code: "en", name: "English (Resistance)" },
 					{ code: "enAvalon", name: "English (Avalon)" },
+					{ code: "it", name: "Italiano" },
 				];
 
 				scope.currentLanguage = $translate.use();
