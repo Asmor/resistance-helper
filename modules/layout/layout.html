@@ -3,11 +3,15 @@
 
 	<div class="tab-content">
 		<div class="panel panel-default tab-pane active fade in" role="tabpanel" id="select">
-			<div class="panel-heading">Players</div>
+			<div class="panel-heading">{{ "UI_LANGUAGE" | translate }}</div>
+			<div class="panel-body text-center">
+				<set-language></set-language>
+			</div>
+			<div class="panel-heading">{{ "UI_PLAYERS" | translate }}</div>
 			<div class="panel-body text-center">
 				<player-count></player-count>
 			</div>
-			<div class="panel-heading">Options</div>
+			<div class="panel-heading">{{ "UI_OPTIONS" | translate }}</div>
 			<div class="panel-body">
 				<options-list></options-list>
 			</div>

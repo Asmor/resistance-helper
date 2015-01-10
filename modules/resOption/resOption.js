@@ -9,8 +9,6 @@ define(function () {
 			},
 			templateUrl: "modules/resOption/resOption.html",
 			link: function (scope) {
-				console.log("Link!");
-				window.scope = scope;
 				scope.game = game;
 			},
 			compile: function(element) {

@@ -1,0 +1,27 @@
+"use strict";
+
+define({
+	OPTION_ASSASSIN: "Assassin Module",
+	OTHER_DEFECTOR_ROLE_CARDS: "Lancelot role cards",
+	OTHER_DEFECTORS_KNOW_EACH_OTHER: "Lancelots know each other",
+	OTHER_DEFECTORS_SWITCH_ROLES: "Lancelots switch roles",
+	OTHER_EXTRA_MISSION_CARDS: "Extra Mission Cards",
+	OTHER_INQUISITOR: "Lady of the Lake",
+	OTHER_INQUISITOR_LOYALTY_CARDS: "Lady of the Lake Loyalty Cards",
+	OTHER_INQUISITOR_TOKEN: "Lady of the Lake token",
+	OTHER_SERGEANT: "Excalibur",
+	OTHER_SERGEANT_TOKEN: "Excalibur card",
+	ROLE_ASSASSIN: "Assassin",
+	ROLE_BLIND_SPY: "Oberon",
+	ROLE_BODY_GUARD: "Percival",
+	ROLE_COMMANDER: "Merlin",
+	ROLE_DEEP_COVER: "Mordred",
+	ROLE_DEFECTOR: "Lancelot",
+	ROLE_DEFECTOR_PLURAL: "Lancelots",
+	ROLE_DEFECTOR_SPY: "Evil Lancelot",
+	ROLE_FALSE_COMMANDER: "Morgana",
+	TEAM_RESISTANCE: "Loyal Knight",
+	TEAM_RESISTANCE_PLURAL: "Loyal Knights",
+	TEAM_SPY: "Evil Minion",
+	TEAM_SPY_PLURAL: "Evil Minions",
+});

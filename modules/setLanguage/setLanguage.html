@@ -1,0 +1,7 @@
+<button
+	class="btn btn-default"
+	ng-repeat="language in languages"
+	ng-click="setLanguage(language.code)"
+	ng-class="{ true: 'active' }[currentLanguage == language.code]"
+>{{ language.name }}</button>
+

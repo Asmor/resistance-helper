@@ -90,18 +90,14 @@ define(function () {
 
 			resistance = game.playerCount - spies;
 
-			things.roles.res = normalize(things.roles.res, "Blank", resistance);
-			things.roles.spy = normalize(things.roles.spy, "Blank", spies);
+			things.roles.res = normalize(things.roles.res, "ROLE_GENERIC", resistance);
+			things.roles.spy = normalize(things.roles.spy, "ROLE_GENERIC", spies);
 
 			return things;
 		}
 
 		function normalize(a, name, count) {
 			a.sort();
-
-			if (a.length > count) {
-				console.log("Warning! Too many of something!");
-			}
 
 			while ( a.length < count ) {
 				// Pad the array out with the supplied generic value so it's the last thing in there after sorting
@@ -227,7 +223,7 @@ define(function () {
 			var i, current,
 				script = {
 					spies: {
-						open: [ "Spies" ],
+						open: [ "TEAM_SPY_PLURAL" ],
 					},
 					order: []
 				};

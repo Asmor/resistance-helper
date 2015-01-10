@@ -1,12 +1,14 @@
 "use strict";
 
-define([], ["game", function (game) {
+define([], ["$filter", "game", function ($filter, game) {
 	return {
 		restrict: "E",
 		scope: {},
 		templateUrl: "modules/resScript/resScript.html",
 		link: function (scope) {
-			var _sections, currentSpeechTimestamp;
+			var _sections, currentSpeechTimestamp,
+				translate = $filter("translate"),
+				translateAll = $filter("translateAll");
 
 			scope.getScript = function () {
 				if ( ! game.dirty ) {
@@ -19,7 +21,7 @@ define([], ["game", function (game) {
 					closePause = 1;
 
 				sections.push([{
-					text: "Everyone close your eyes and stick out your fists.",
+					text: translate("SCRIPT_START"),
 					type: "start",
 					pause: 3,
 				}]);
@@ -37,44 +39,44 @@ define([], ["game", function (game) {
 					sections.push(lines);
 
 					if ( phase.raise ) {
-						line = smartConcat(phase.raise);
+						line = translateAll(smartConcat(phase.raise));
 
 						if ( phase.noRaise ) {
-							line += ", except " + smartConcat(phase.noRaise);
+							line += ", SCRIPT_EXCEPT " + smartConcat(phase.noRaise);
 						}
 
-						line += ", raise your thumbs. ";
+						line += ", SCRIPT_RAISE ";
 
 						lines.push({
-							text: line,
+							text: translateAll(line),
 							type: "raise",
 							pause: raisePause,
 						});
 					}
 
-					line = smartConcat(phase.open);
+					line = translateAll(smartConcat(phase.open));
 
 					if ( phase.noOpen ) {
-						line += ", except " + smartConcat(phase.noOpen);
+						line += ", SCRIPT_EXCEPT " + smartConcat(phase.noOpen);
 					}
 
-					line += ", open your eyes.";
+					line += ", SCRIPT_OPEN";
 
 					lines.push({
-						text: line,
+						text: translateAll(line),
 						type: "open",
 						pause: openPause,
 					});
 
 					lines.push({
-						text: "Everyone close your eyes and lower your thumbs.",
+						text: translate("SCRIPT_CLOSE"),
 						type: "close",
 						pause: closePause,
 					});
 				}
 
 				sections.push([{
-					text: "Everyone open your eyes!",
+					text: translate("SCRIPT_END"),
 					type: "end",
 					pause: 0,
 				}]);
@@ -88,9 +90,9 @@ define([], ["game", function (game) {
 
 			function smartConcat(a) {
 				if ( a.length <= 2 ) {
-					return a.join(" and ");
+					return a.join(" SCRIPT_AND ");
 				} else {
-					return a.slice(0, a.length - 1).join(", ") + ", and " + a[a.length - 1];
+					return a.slice(0, a.length - 1).join(", ") + ", SCRIPT_AND " + a[a.length - 1];
 				}
 			}
 
@@ -165,17 +167,7 @@ define([], ["game", function (game) {
 
 			function setVoice() {
 				scope.$apply(function () {
-					var allVoices = speechSynthesis.getVoices(),
-						voices = allVoices.filter(function (voice) {
-							return voice.lang.match(/^en/);
-						});
-
-					if ( !voices.length ) {
-						// iOS doesn't get any voices listed... I'm hoping it's just choking on the
-						// language filter, so if we don't get any voices after filtering just use
-						// all voices
-						voices = allVoices;
-					}
+					var voices = speechSynthesis.getVoices();
 
 					if ( voices.length ) {
 						scope.canSpeak = true;

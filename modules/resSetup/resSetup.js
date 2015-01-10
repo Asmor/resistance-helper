@@ -8,8 +8,8 @@ define([], ["game", function (game) {
 		link: function (scope) {
 			scope.game = game;
 			scope.sides = [
-				{ name: "Resistance", className: "role-list__res", key: "res" },
-				{ name: "Spies", className: "role-list__spy", key: "spy" },
+				{ name: "TEAM_RESISTANCE_PLURAL", className: "role-list__res", key: "res" },
+				{ name: "TEAM_SPY_PLURAL", className: "role-list__spy", key: "spy" },
 			];
 			scope.showCards = function () {
 				return Object.keys(game.things.decks).length;

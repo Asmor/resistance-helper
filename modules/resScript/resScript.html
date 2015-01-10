@@ -1,22 +1,22 @@
 <div class="panel panel-default">
-	<div class="panel-heading" ng-if="canSpeak">Narration</div>
+	<div class="panel-heading" ng-if="canSpeak">{{ "UI_NARRATION" | translate }}</div>
 	<div class="panel-body" ng-if="canSpeak">
 		<div class="voice-controls">
-			<button type="button" class="btn btn-default" ng-click="speakScript()">Read script</button>
+			<button type="button" class="btn btn-default" ng-click="speakScript()">{{ "UI_READ_SCRIPT" | translate }}</button>
 			<select
 				ng-model="voiceParams.selectedVoice"
 				ng-options="voice.name for voice in voices"
 			>
 			</select>
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default" ng-click="changeRate(-0.2)">Slower</button>
-				<button type="button" class="btn btn-default disabled">Speed: {{ voiceParams.rate }}</button>
-				<button type="button" class="btn btn-default" ng-click="changeRate(0.2)">Faster</button>
+				<button type="button" class="btn btn-default" ng-click="changeRate(-0.2)">{{ "UI_SLOWER" | translate }}</button>
+				<button type="button" class="btn btn-default disabled">{{ "UI_SPEED" | translate }}: {{ voiceParams.rate }}</button>
+				<button type="button" class="btn btn-default" ng-click="changeRate(0.2)">{{ "UI_FASTER" | translate }}</button>
 			</div>
 		</div>
-		<p> Note: Voice speed isn't supported by all voices </p>
+		<p> {{ "UI_VOICE_DISCLAIMER" | translate }} </p>
 	</div>
-	<div class="panel-heading">Script</div>
+	<div class="panel-heading">{{ "UI_SCRIPT" | translate }}</div>
 	<div class="panel-body">
 
 		<p ng-repeat="section in getScript()">

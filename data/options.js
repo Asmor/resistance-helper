@@ -2,168 +2,168 @@
 
 define([], [
 	{
-		name: "Assassin Module",
+		name: "OPTION_ASSASSIN",
 		tags: [ "scenario", "named roles" ],
 		exclusive: [ "assassin", "scenario" ],
 		includes: [
-			{ type: "role", side: "res", name: "Commander" },
-			{ type: "role", side: "spy", name: "Assassin" },
-			{ type: "script", phase: "commander", subphase: "raise", name: "Spies" },
-			{ type: "script", phase: "commander", subphase: "open", name: "Commander" },
+			{ type: "role", side: "res", name: "ROLE_COMMANDER" },
+			{ type: "role", side: "spy", name: "ROLE_ASSASSIN" },
+			{ type: "script", phase: "commander", subphase: "raise", name: "TEAM_SPY_PLURAL" },
+			{ type: "script", phase: "commander", subphase: "open", name: "ROLE_COMMANDER" },
 		], allows: [
-			{ name: "Blind Spy", includes: [
-				{ type: "role", side: "spy", name: "Blind Spy" },
-				{ type: "script", phase: "spies", subphase: "noOpen", name: "Blind Spy" },
+			{ name: "ROLE_BLIND_SPY", includes: [
+				{ type: "role", side: "spy", name: "ROLE_BLIND_SPY" },
+				{ type: "script", phase: "spies", subphase: "noOpen", name: "ROLE_BLIND_SPY" },
 			]},
-			{ name: "Deep Cover", includes: [
-				{ type: "role", side: "spy", name: "Deep Cover" },
-				{ type: "script", phase: "commander", subphase: "noRaise", name: "Deep Cover" },
+			{ name: "ROLE_DEEP_COVER", includes: [
+				{ type: "role", side: "spy", name: "ROLE_DEEP_COVER" },
+				{ type: "script", phase: "commander", subphase: "noRaise", name: "ROLE_DEEP_COVER" },
 			]},
-			{ name: "Body Guard", includes: [
-				{ type: "role", side: "res", name: "Body Guard" },
-				{ type: "script", phase: "bodyguard", subphase: "raise", name: "Commander" },
-				{ type: "script", phase: "bodyguard", subphase: "open", name: "Body Guard" },
+			{ name: "ROLE_BODY_GUARD", includes: [
+				{ type: "role", side: "res", name: "ROLE_BODY_GUARD" },
+				{ type: "script", phase: "bodyguard", subphase: "raise", name: "ROLE_COMMANDER" },
+				{ type: "script", phase: "bodyguard", subphase: "open", name: "ROLE_BODY_GUARD" },
 			], allows: [
-				{ name: "False Commander", includes: [
-					{ type: "role", side: "spy", name: "False Commander" },
-					{ type: "script", phase: "bodyguard", subphase: "raise", name: "False Commander" },
+				{ name: "ROLE_FALSE_COMMANDER", includes: [
+					{ type: "role", side: "spy", name: "ROLE_FALSE_COMMANDER" },
+					{ type: "script", phase: "bodyguard", subphase: "raise", name: "ROLE_FALSE_COMMANDER" },
 				]}
 			]},
 		],
 	},
 	{
-		name: "Hunter Module",
+		name: "OPTION_HUNTER",
 		tags: [ "scenario", "named roles" ],
 		exclusive: [ "scenario" ],
 		includes: [
-			{ type: "token", name: "Investigation token" },
-			{ type: "card", deck: "Hunter Loyalty Cards", name: "Not a Chief" },
-			{ type: "card", deck: "Hunter Loyalty Cards", name: "Chief", conditions: { playerCountAtMost: 6 } },
-			{ type: "card", deck: "Hunter Loyalty Cards", name: "Resistance Chief", conditions: { playerCountAtLeast: 7 } },
-			{ type: "card", deck: "Hunter Loyalty Cards", name: "Spy Chief", conditions: { playerCountAtLeast: 7 } },
-			{ type: "card", deck: "Extra Mission Cards", name: "Chief Fail" },
-			{ type: "role", side: "res", name: "Chief" },
-			{ type: "role", side: "res", name: "Hunter" },
-			{ type: "role", side: "spy", name: "Chief" },
-			{ type: "role", side: "spy", name: "Hunter" },
-			{ type: "role", side: "res", name: "Chief", conditions: { playerCountAtLeast: 8 } },
-			{ type: "role", side: "spy", name: "Chief", conditions: { playerCountAtLeast: 10 } },
-			{ type: "script", phase: "spies", subphase: "raise", name: "Spy Chiefs" },
-			{ type: "script", phase: "chiefs", subphase: "open", name: "Resistance Chiefs" },
+			{ type: "token", name: "OTHER_INVESTIGATION_TOKEN" },
+			{ type: "card", deck: "OTHER_HUNTER_LOYALTY_CARDS", name: "OTHER_NOT_A_CHIEF" },
+			{ type: "card", deck: "OTHER_HUNTER_LOYALTY_CARDS", name: "OTHER_CHIEF", conditions: { playerCountAtMost: 6 } },
+			{ type: "card", deck: "OTHER_HUNTER_LOYALTY_CARDS", name: "OTHER_RESISTANCE_CHIEF", conditions: { playerCountAtLeast: 7 } },
+			{ type: "card", deck: "OTHER_HUNTER_LOYALTY_CARDS", name: "OTHER_SPY_CHIEF", conditions: { playerCountAtLeast: 7 } },
+			{ type: "card", deck: "OTHER_EXTRA_MISSION_CARDS", name: "OTHER_CHIEF_FAIL" },
+			{ type: "role", side: "res", name: "ROLE_CHIEF" },
+			{ type: "role", side: "res", name: "ROLE_HUNTER" },
+			{ type: "role", side: "spy", name: "ROLE_CHIEF" },
+			{ type: "role", side: "spy", name: "ROLE_HUNTER" },
+			{ type: "role", side: "res", name: "ROLE_CHIEF", conditions: { playerCountAtLeast: 8 } },
+			{ type: "role", side: "spy", name: "ROLE_CHIEF", conditions: { playerCountAtLeast: 10 } },
+			{ type: "script", phase: "spies", subphase: "raise", name: "OTHER_SPY_CHIEFS" },
+			{ type: "script", phase: "chiefs", subphase: "open", name: "OTHER_RESISTANCE_CHIEFS" },
 		], allows: [
-			{ name: "Dummy Agent", includes: [
-				{ type: "role", side: "res", name: "Dummy Agent" },
+			{ name: "ROLE_DUMMY_AGENT", includes: [
+				{ type: "role", side: "res", name: "ROLE_DUMMY_AGENT" },
 			]},
-			{ name: "Coordinator", includes: [
-				{ type: "role", side: "res", name: "Coordinator" },
-				{ type: "script", phase: "chiefs", subphase: "raise", name: "Coordinator" },
+			{ name: "ROLE_COORDINATOR", includes: [
+				{ type: "role", side: "res", name: "ROLE_COORDINATOR" },
+				{ type: "script", phase: "chiefs", subphase: "raise", name: "ROLE_COORDINATOR" },
 			]},
-			{ name: "Deep Agent", includes: [
-				{ type: "role", side: "spy", name: "Deep Agent" },
-				{ type: "script", phase: "spies", subphase: "raise", name: "Deep Agent" },
-				{ type: "script", phase: "spies", subphase: "noOpen", name: "Deep Agent" },
+			{ name: "ROLE_DEEP_AGENT", includes: [
+				{ type: "role", side: "spy", name: "ROLE_DEEP_AGENT" },
+				{ type: "script", phase: "spies", subphase: "raise", name: "ROLE_DEEP_AGENT" },
+				{ type: "script", phase: "spies", subphase: "noOpen", name: "ROLE_DEEP_AGENT" },
 			], allows: [
-				{ name: "Pretender", includes: [
-					{ type: "role", side: "res", name: "Pretender" },
-					{ type: "script", phase: "spies", subphase: "raise", name: "Pretender" },
+				{ name: "ROLE_PRETENDER", includes: [
+					{ type: "role", side: "res", name: "ROLE_PRETENDER" },
+					{ type: "script", phase: "spies", subphase: "raise", name: "ROLE_PRETENDER" },
 				], allows: [
-					{ name: "Blame", includes: [
-						{ type: "rule", name: "Blame" },
+					{ name: "OTHER_BLAME", includes: [
+						{ type: "rule", name: "OTHER_BLAME" },
 					]},
 				]},
 			]},
 		]
 	},
 	{
-		name: "Defector role cards",
+		name: "OTHER_DEFECTOR_ROLE_CARDS",
 		hidden: true,
 		required_if: { hasAny: [ "defector" ] },
 		includes: [
-			{ type: "role", side: "res", name: "Defector" },
-			{ type: "role", side: "spy", name: "Defector" },
+			{ type: "role", side: "res", name: "ROLE_DEFECTOR" },
+			{ type: "role", side: "spy", name: "ROLE_DEFECTOR" },
 		],
 	},
 	{
-		name: "Defectors know each other",
+		name: "OTHER_DEFECTORS_KNOW_EACH_OTHER",
 		tags: [ "defector", "named roles" ],
 		includes: [
-			{ type: "rule", name: "Defectors know each other" },
-			{ type: "script", phase: "defector", subphase: "open", name: "Defectors" },
+			{ type: "rule", name: "OTHER_DEFECTORS_KNOW_EACH_OTHER" },
+			{ type: "script", phase: "defector", subphase: "open", name: "ROLE_DEFECTOR_PLURAL" },
 		],
 	},
 	{
-		name: "Defectors switch roles",
+		name: "OTHER_DEFECTORS_SWITCH_ROLES",
 		tags: [ "defector", "named roles" ],
 		includes: [
-			{ type: "other", name: "Defector Switch Cards" },
-			{ type: "script", phase: "spies", subphase: "raise", name: "Spy Defector" },
-			{ type: "script", phase: "spies", subphase: "noOpen", name: "Spy Defector" },
+			{ type: "other", name: "OTHER_DEFECTORS_SWITCH_ROLES" },
+			{ type: "script", phase: "spies", subphase: "raise", name: "ROLE_DEFECTOR_SPY" },
+			{ type: "script", phase: "spies", subphase: "noOpen", name: "ROLE_DEFECTOR_SPY" },
 		],
 	},
 	{
-		name: "Inquisitor",
+		name: "OTHER_INQUISITOR",
 		includes: [
-			{ type: "token", name: "Inquisitor token" },
-			{ type: "card", deck: "Inquisitor Loyalty Cards", name: "Spy", conditions: { hasAny: [ "named roles" ] } },
-			{ type: "card", deck: "Inquisitor Loyalty Cards", name: "Resistance", conditions: { hasAny: [ "named roles" ] } },
+			{ type: "token", name: "OTHER_INQUISITOR_TOKEN" },
+			{ type: "card", deck: "OTHER_INQUISITOR_LOYALTY_CARDS", name: "TEAM_SPY", conditions: { hasAny: [ "named roles" ] } },
+			{ type: "card", deck: "OTHER_INQUISITOR_LOYALTY_CARDS", name: "TEAM_RESISTANCE", conditions: { hasAny: [ "named roles" ] } },
 		],
 	},
 	{
-		name: "The Plot Thickens",
+		name: "OTHER_THE_PLOT_THICKENS",
 		includes: [
-			{ type: "other", name: "Plot deck" },
+			{ type: "other", name: "OTHER_PLOT_DECK" },
 		],
 	},
 	{
-		name: "Reverser Mission Cards",
+		name: "OTHER_REVERSER_MISSION_CARDS",
 		hidden: true,
 		required_if: { hasAny: [ "reverser" ] },
 		includes: [
-			{ type: "card", deck: "Extra Mission Cards", name: "Reverse" },
+			{ type: "card", deck: "OTHER_EXTRA_MISSION_CARDS", name: "OTHER_REVERSE" },
 		],
 	},
 	{
-		name: "Reverser (Resistance)",
+		name: "OTHER_REVERSER_RESISTANCE",
 		tags: [ "reverser", "named roles" ],
 		includes: [
-			{ type: "role", side: "res", name: "Reverser" },
+			{ type: "role", side: "res", name: "ROLE_REVERSER" },
 		],
 	},
 	{
-		name: "Reverser (Spy)",
+		name: "OTHER_REVERSER_SPY",
 		tags: [ "reverser", "named roles" ],
 		includes: [
-			{ type: "role", side: "spy", name: "Reverser" },
+			{ type: "role", side: "spy", name: "ROLE_REVERSER" },
 		],
 	},
 	{
-		name: "Rogue (Resistance)",
+		name: "OTHER_ROGUE_RESISTANCE",
 		tags: [ "rogue agent", "named roles" ],
 		includes: [
-			{ type: "role", side: "res", name: "Rogue" },
-			{ type: "token", name: "Watch token" },
-			{ type: "card", deck: "Extra Mission Cards", name: "Rogue Success" },
+			{ type: "role", side: "res", name: "ROLE_ROGUE" },
+			{ type: "token", name: "OTHER_WATCH_TOKEN" },
+			{ type: "card", deck: "OTHER_EXTRA_MISSION_CARDS", name: "OTHER_ROGUE_SUCCESS" },
 		],
 	},
 	{
-		name: "Rogue (Spy)",
+		name: "OTHER_ROGUE_SPY",
 		tags: [ "rogue agent", "named roles" ],
 		includes: [
-			{ type: "role", side: "spy", name: "Rogue" },
-			{ type: "script", phase: "spies", subphase: "noOpen", name: "Rogue" },
-			{ type: "script", phase: "commander", subphase: "noRaise", name: "Rogue", condition: { hasAny: [ "assassin" ] } },
+			{ type: "role", side: "spy", name: "ROLE_ROGUE" },
+			{ type: "script", phase: "spies", subphase: "noOpen", name: "ROLE_ROGUE" },
+			{ type: "script", phase: "commander", subphase: "noRaise", name: "ROLE_ROGUE", condition: { hasAny: [ "assassin" ] } },
 		],
 	},
 	{
-		name: "Sergeant",
+		name: "OTHER_SERGEANT",
 		includes: [
-			{ type: "token", name: "Sergeant token" },
+			{ type: "token", name: "OTHER_SERGEANT_TOKEN" },
 		],
 	},
 	{
-		name: "Trapper",
+		name: "OTHER_TRAPPER",
 		includes: [
-			{ type: "other", name: "Additional set of mission cards" },
+			{ type: "other", name: "OTHER_ADDITIONAL_SET" },
 		],
 	},
 ]);

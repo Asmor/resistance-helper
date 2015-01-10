@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-	<div class="panel-heading">Roles</div>
+	<div class="panel-heading">{{ "UI_ROLES" | translate }}</div>
 	<div class="panel-body">
 		<div
 			ng-repeat="side in sides"
@@ -7,50 +7,50 @@
 			ng-class="side.className"
 		>
 			<span class="role-list--name">
-				{{ side.name }}
+				{{ side.name | translate }}
 			</span>
 			<ul>
 				<li ng-repeat="role in game.things.roles[side.key]">
-					{{ role }}
+					{{ role | translateAll }}
 				</li>
 			</ul>
 		</div>
 	</div>
-	<div class="panel-heading" ng-if="showCards()">Cards</div>
+	<div class="panel-heading" ng-if="showCards()">{{ "UI_CARDS" | translate }}</div>
 	<div class="panel-body" ng-if="showCards()">
 		<div
 			ng-repeat="(deckName, cards) in game.things.decks"
 			class="card-list"
 		>
-			<span class="deck-list--name">{{ deckName }}</span>
+			<span class="deck-list--name">{{ deckName | translate }}</span>
 			<ul>
 				<li ng-repeat="card in cards">
-					{{ card }}
+					{{ card | translate }}
 				</li>
 			</ul>
 		</div>
 	</div>
-	<div class="panel-heading" ng-if="game.things.tokens.length">Tokens</div>
+	<div class="panel-heading" ng-if="game.things.tokens.length">{{ "UI_TOKENS" | translate }}</div>
 	<div class="panel-body" ng-if="game.things.tokens.length">
 		<ul>
 			<li ng-repeat="token in game.things.tokens">
-				{{ token }}
+				{{ token | translate }}
 			</li>
 		</ul>
 	</div>
-	<div class="panel-heading" ng-if="game.things.rules.length">Rules</div>
+	<div class="panel-heading" ng-if="game.things.rules.length">{{ "UI_RULES" | translate }}</div>
 	<div class="panel-body" ng-if="game.things.rules.length">
 		<ul>
 			<li ng-repeat="rule in game.things.rules">
-				{{ rule }}
+				{{ rule | translate }}
 			</li>
 		</ul>
 	</div>
-	<div class="panel-heading" ng-if="game.things.other.length">Other</div>
+	<div class="panel-heading" ng-if="game.things.other.length">{{ "UI_OTHER" | translate }}</div>
 	<div class="panel-body" ng-if="game.things.other.length">
 		<ul>
 			<li ng-repeat="other in game.things.other">
-				{{ other }}
+				{{ other | translate }}
 			</li>
 		</ul>
 	</div>
