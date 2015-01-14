@@ -49,7 +49,7 @@ define([], [
 			{ type: "role", side: "res", name: "ROLE_CHIEF", conditions: { playerCountAtLeast: 8 } },
 			{ type: "role", side: "spy", name: "ROLE_CHIEF", conditions: { playerCountAtLeast: 10 } },
 			{ type: "script", phase: "spies", subphase: "raise", name: "OTHER_SPY_CHIEFS" },
-			{ type: "script", phase: "chiefs", subphase: "open", name: "OTHER_RESISTANCE_CHIEFS" },
+			{ type: "script", phase: "chiefs", subphase: "open", name: "OTHER_RESISTANCE_CHIEFS", conditions: { playerCountAtLeast: 8 } },
 		], allows: [
 			{ name: "ROLE_DUMMY_AGENT", includes: [
 				{ type: "role", side: "res", name: "ROLE_DUMMY_AGENT" },
@@ -57,6 +57,7 @@ define([], [
 			{ name: "ROLE_COORDINATOR", includes: [
 				{ type: "role", side: "res", name: "ROLE_COORDINATOR" },
 				{ type: "script", phase: "chiefs", subphase: "raise", name: "ROLE_COORDINATOR" },
+				{ type: "script", phase: "chiefs", subphase: "open", name: "OTHER_RESISTANCE_CHIEF", conditions: { playerCountAtMost: 7 } },
 			]},
 			{ name: "ROLE_DEEP_AGENT", includes: [
 				{ type: "role", side: "spy", name: "ROLE_DEEP_AGENT" },
